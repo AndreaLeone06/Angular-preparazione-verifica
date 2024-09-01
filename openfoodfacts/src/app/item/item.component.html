@@ -1,16 +1,16 @@
-<div class="container mt-4">
-    <h1 class="mb-4">Product characteristics</h1>
+<div class="product-container mt-3">
+    <h2 class="mb-3">Product Details</h2>
     <div class="row">
-        <div class="col-md-8">
-            <p><strong>Common name:</strong>{{ item.product.product_name }}</p>
-            <p><strong>Quantity:</strong> {{ item.product.quantity }}</p>
-            <p><strong>Packaging:</strong> {{ item.product.packaging }}</p>
-            <p><strong>Brands:</strong> {{ item.product.brands }}</p>
-            <p><strong>Categories:</strong> {{ item.product.categories }}</p>
+        <div class="col-lg-8">
+            <p><strong>Common Name:</strong> {{ productDetail.product.product_name }}</p>
+            <p><strong>Quantity:</strong> {{ productDetail.product.quantity }}</p>
+            <p><strong>Packaging:</strong> {{ productDetail.product.packaging }}</p>
+            <p><strong>Brands:</strong> {{ productDetail.product.brands }}</p>
+            <p><strong>Categories:</strong> {{ productDetail.product.categories }}</p>
         </div>
-        <div class="col-md-4 text-center ">
-            <img src="{{item.product.selected_images.front.display.it}}" alt="Barilla Spaghetti" class="img-fluid" width="25%">
+        <div class="col-lg-4 text-center">
+            <img src="{{productDetail.product.selected_images.front.display.it}}" alt="Product Image" class="img-fluid" width="50%">
         </div>
     </div>
-    <p><a href (click)="back()">Back</a></p>
+    <a href="#" (click)="goBack()">Return</a>
 </div>

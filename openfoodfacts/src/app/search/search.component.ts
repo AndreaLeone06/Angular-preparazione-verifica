@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SpotifyService } from '../spotify.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-search',
@@ -8,23 +8,18 @@ import { SpotifyService } from '../spotify.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  item: string;
-  title = 'first-routed-app';
-  obsTrack: Observable<Object>;
-  results: any;
-  // faccio iniettare lo spotify service e faccio una ricerca
-  constructor(public spotify: SpotifyService) {
+  searchTerm: string;
+  searchResults$: Observable<any>;
 
-  }
+  constructor(private productService: ProductService) {}
 
-  submit(itemName: HTMLInputElement): void {
-
-    if (!itemName.value) {
+  onSearch(inputElement: HTMLInputElement): void {
+    const query = inputElement.value.trim();
+    if (!query) {
       return;
     }
-    this.item = itemName.value;
-    this.obsTrack = this.spotify.searchItem(this.item);
-    this.obsTrack.subscribe((data) => { this.results = data; console.log(this.results) });
+    this.searchTerm = query;
+    this.searchResults$ = this.productService.searchProducts(this.searchTerm);
+    this.searchResults$.subscribe(results => console.log(results));
   }
-
 }
